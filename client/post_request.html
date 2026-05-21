@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Post Service Request — IT Hire</title>
+    <link rel="stylesheet" href="../assets/style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.php" class="nav-logo">IT<span>Hire</span></a>
+    <div class="nav-links">
+        <a href="../index.php">Home</a>
+        <a href="../provider/view_requests.php">Browse Requests</a>
+        <a href="../login.html">Login</a>
+        <a href="register.html" class="nav-btn">Post Request</a>
+    </div>
+</nav>
+
+<div class="page-md" style="padding-top:2rem">
+    <div class="page-header">
+        <h1>Post a New Service Request</h1>
+        <p>Fill in the details below — verified service providers will be able to apply.</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div id="error-message" style="display:none;" class="alert alert-error"></div>
+
+            <form method="POST" action="post_request_process.php">
+                <div class="form-section-title">Service Request Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Request ID <span class="req">*</span></label>
+                        <input type="text" name="request_id" class="form-control"
+                               placeholder="e.g. REQ001" style="text-transform:uppercase"/>
+                        <div class="form-hint">A unique code for this service request</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Request Title <span class="req">*</span></label>
+                        <input type="text" name="title" class="form-control"
+                               placeholder="e.g. Website Development"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description <span class="req">*</span></label>
+                    <textarea name="description" class="form-control" rows="5"
+                              placeholder="Describe the service needed, requirements, timeline, etc..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Budget (UGX) <span class="req">*</span></label>
+                        <input type="number" name="budget" class="form-control"
+                               placeholder="e.g. 2500000" min="0"/>
+                        <div class="form-hint">Total budget including verification fee (UGX 50,000)</div>
+                    </div>
+                  <div class="form-group">
+                        <label>Deadline <span class="req">*</span></label>
+                        <input type="date" name="deadline" class="form-control"
+                               min=""/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Category (Optional)</label>
+                    <input type="text" name="category" class="form-control"
+                           placeholder="e.g. Web Development, Networking, Mobile App"/>
+                </div>
+
+                <div style="display:flex;gap:10px;margin-top:.5rem">
+                    <button type="submit" class="btn btn-primary">Post Request</button>
+                    <a href="dashboard.php" class="btn btn-ghost">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body></html>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get('error');
+const errorDiv = document.getElementById('error-message');
+
+if (error) {
+    errorDiv.style.display = 'block';
+    switch(error) {
+        case 'missing_id':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Request ID is required.</div>';
+            break;
+        case 'missing_title':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Title is required.</div>';
+            break;
+        case 'missing_desc':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Description is required.</div>';
+            break;
+        case 'invalid_budget':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Enter a valid budget amount.</div>';
+            break;
+        case 'missing_deadline':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Deadline is required.</div>';
+            break;
+        case 'past_deadline':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Deadline must be a future date.</div>';
+            break;
+        case 'duplicate':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Request ID already exists. Use a unique ID.</div>';
+            break;
+        case 'db_error':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Database error occurred. Please try again.</div>';
+            break;
+        case 'not_verified':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>You must be verified and have paid the verification fee to post requests.</div>';
+            break;
+    }
+}
+</script>
