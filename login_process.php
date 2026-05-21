@@ -1,4 +1,13 @@
 <?php
+/*
+=====================================================
+ SECTION: LOGIN PROCESS HANDLER
+ HANDLED BY: MILAKA ABUBAKER
+ CONTRIBUTION: Developed login authentication logic
+ for both company and job seeker users (session
+ handling, password verification, and redirects).
+=====================================================
+*/
 require_once 'db_connect.php';
 session_start();
 
