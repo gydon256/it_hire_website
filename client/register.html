@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register Service Client — IT Hire</title>
+    <link rel="stylesheet" href="../assets/style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.php" class="nav-logo">IT<span>Hire</span></a>
+    <div class="nav-links">
+        <a href="../index.php">Home</a>
+        <a href="../provider/view_requests.php">Browse Requests</a>
+        <a href="../login.html">Login</a>
+        <a href="register.html" class="nav-btn">Post Request</a>
+    </div>
+</nav>
+
+<div class="page-md" style="padding-top:2.5rem">
+    <div class="page-header" style="text-align:center">
+        <h1>Register as Service Client</h1>
+        <p>Create a client account to post IT service requests</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div id="error-message" style="display:none;" class="alert alert-error"></div>
+
+            <form method="POST" action="register_process.php">
+
+                <div class="form-section-title">Personal Information</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Client ID <span class="req">*</span></label>
+                        <input type="text" name="client_id" class="form-control"
+                               placeholder="e.g. CLT001"/>
+                        <div class="form-hint">Your unique client identifier</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" name="full_name" class="form-control"
+                               placeholder="e.g. John Doe"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>National ID / Passport <span class="req">*</span></label>
+                        <input type="text" name="national_id" class="form-control"
+                               placeholder="e.g. CF12345678ABC"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Organization Name (Optional)</label>
+                        <input type="text" name="organization_name" class="form-control"
+                               placeholder="e.g. TechSoft Uganda Ltd"/>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Contact Information</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address <span class="req">*</span></label>
+                        <input type="email" name="email" class="form-control"
+                               placeholder="info@company.co.ug"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number <span class="req">*</span></label>
+                        <input type="tel" name="phone_number" class="form-control"
+                               placeholder="0701234567"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Physical Address <span class="req">*</span></label>
+                    <input type="text" name="physical_address" class="form-control"
+                           placeholder="e.g. Plot 45, Kampala Road, Kampala"/>
+                </div>
+
+                <div class="form-section-title">Service Information</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Industry (Optional)</label>
+                        <input type="text" name="industry" class="form-control"
+                               placeholder="e.g. Finance, Healthcare"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Category Needed (Optional)</label>
+                        <input type="text" name="service_category_needed" class="form-control"
+                               placeholder="e.g. Web Development, Networking"/>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Login Credentials</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Password <span class="req">*</span></label>
+                        <input type="password" name="password" class="form-control" placeholder="Min. 6 characters"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password <span class="req">*</span></label>
+                        <input type="password" name="password_confirm" class="form-control" placeholder="Repeat password"/>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" style="margin-top:.5rem">
+                    Register as Service Client
+                </button>
+            </form>
+        </div>
+        <div class="card-footer">
+            Already registered? <a href="../login.html">Login here</a> &nbsp;·&nbsp;
+            Service Provider? <a href="../provider/register.html">Register here</a>
+        </div>
+    </div>
+</div>
+</body></html>

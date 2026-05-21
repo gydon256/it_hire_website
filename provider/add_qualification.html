@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Qualifications — IT Hire</title>
+    <link rel="stylesheet" href="../assets/style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.php" class="nav-logo">IT<span>Hire</span></a>
+    <div class="nav-links">
+        <a href="../index.php">Home</a>
+        <a href="view_requests.php">Browse Requests</a>
+        <a href="../login.html">Login</a>
+        <a href="dashboard.php" class="active">Dashboard</a>
+    </div>
+</nav>
+
+<div class="page-md" style="padding-top:2rem">
+    <div class="page-header">
+        <h1>My Qualifications</h1>
+        <p>Add your academic background to strengthen your service applications</p>
+    </div>
+
+    <!-- Add new -->
+    <div class="card">
+        <div class="card-header"><h2>Add New Qualification</h2></div>
+        <div class="card-body">
+
+            <form method="POST" action="add_qualification_process.php">
+                <div class="form-group">
+                    <label>Institution Name <span class="req">*</span></label>
+                    <input type="text" name="institution_name" class="form-control"
+                           placeholder="e.g. Makerere University"/>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Qualification Title <span class="req">*</span></label>
+                        <input type="text" name="qualification_title" class="form-control"
+                               placeholder="e.g. Bachelor of Computer Science"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Qualification Level <span class="req">*</span></label>
+                        <select name="qualification_level" class="form-control">
+                            <option value="Certificate">Certificate</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Degree">Degree</option>
+                            <option value="Masters">Masters</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Professional Cert">Professional Certification</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Specialization (Optional)</label>
+                    <input type="text" name="specialization" class="form-control"
+                           placeholder="e.g. Software Development"/>
+                </div>
+                <div class="form-group">
+                    <label>Skills Acquired (Optional)</label>
+                    <textarea name="skills_acquired" class="form-control" rows="3"
+                              placeholder="e.g. PHP, MySQL, Networking, System Administration, Python..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Year Obtained <span class="req">*</span></label>
+                        <input type="number" name="year_obtained" class="form-control"
+                               placeholder="e.g. 2020" min="1950" max="<?= date('Y') ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Document Reference (Optional)</label>
+                        <input type="text" name="document_reference" class="form-control"
+                               placeholder="e.g. Certificate number or file path"/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Qualification</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body></html>

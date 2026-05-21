@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login — IT Hire</title>
+    <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.php" class="nav-logo">IT<span>Hire</span></a>
+    <div class="nav-links">
+        <a href="index.php">Home</a>
+        <a href="provider/view_requests.php">Browse Requests</a>
+        <a href="login.html" class="active">Login</a>
+        <a href="client/register.html" class="nav-btn">Post Request</a>
+    </div>
+</nav>
+
+<div class="page-sm" style="padding-top:3rem">
+    <div class="card">
+        <div class="card-header" style="justify-content:center;flex-direction:column;text-align:center;padding:2rem 1.5rem 1.2rem;">
+            <div style="font-size:36px;margin-bottom:8px;">🔐</div>
+            <h2 style="font-size:22px">Welcome back</h2>
+            <p style="font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:400">Sign in to your IT Hire account</p>
+        </div>
+        <div class="card-body">
+
+            <div id="error-message" style="display:none;" class="alert alert-error"></div>
+
+            <form method="POST" action="login_process.php">
+
+                <div class="form-group">
+                    <label>I am logging in as <span class="req">*</span></label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                        <label style="margin:0" class="role-opt">
+                            <input type="radio" name="role" value="client" style="display:none"/>
+                            <div class="role-card" id="r-client">
+                                <div style="font-size:24px;margin-bottom:4px">🏢</div>
+                                <div style="font-weight:700;font-size:14px;color:var(--primary)">Service Client</div>
+                                <div style="font-size:11px;color:var(--text-muted)">Post requests &amp; hire</div>
+                            </div>
+                        </label>
+                        <label style="margin:0" class="role-opt">
+                            <input type="radio" name="role" value="provider" style="display:none"/>
+                            <div class="role-card" id="r-provider">
+                                <div style="font-size:24px;margin-bottom:4px">👤</div>
+                                <div style="font-weight:700;font-size:14px;color:var(--primary)">Service Provider</div>
+                                <div style="font-size:11px;color:var(--text-muted)">Find IT work</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address <span class="req">*</span></label>
+                    <input type="email" name="email" class="form-control"
+                           placeholder="your@email.com" required/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password <span class="req">*</span></label>
+                    <input type="password" name="password" class="form-control"
+                           placeholder="Your password" required/>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            No account yet? &nbsp;
+            <a href="client/register.html">Register as Service Client</a> &nbsp;·&nbsp;
+            <a href="provider/register.html">Register as Service Provider</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.role-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: #fff;
+}
+.role-card:hover { border-color: var(--accent); background: #EFF6FF; }
+input[type="radio"]:checked + .role-card {
+    border-color: var(--primary);
+    background: #EFF6FF;
+    box-shadow: 0 0 0 3px rgba(27,63,122,0.12);
+}
+</style>
+</body></html>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get('error');
+const role = urlParams.get('role');
+const errorDiv = document.getElementById('error-message');
+
+if (error) {
+    errorDiv.style.display = 'block';
+    switch(error) {
+        case 'missing':
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Please fill in all fields and select your account type.</div>';
+            break;
+        case 'invalid_credentials':
+            const roleText = role === 'client' ? 'service client' : 'service provider';
+            errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>Invalid email or password for ' + roleText + ' account.</div>';
+            break;
+    }
+}
+</script>
