@@ -117,6 +117,34 @@ if (error) {
         case 'not_verified':
             errorDiv.innerHTML = '<span class="alert-icon">⚠️</span><div>You must be verified and have paid the verification fee to post requests.</div>';
             break;
+
+
     }
+// --- AUTOMATIC UNIQUE ID GENERATOR (Added code) ---
+window.addEventListener('DOMContentLoaded', () => {
+    const idInput = document.querySelector('input[name="request_id"]');
+    if (idInput) {
+        // Prevent manual editing
+        idInput.readOnly = true; 
+        idInput.style.backgroundColor = '#f0f0f0';
+        idInput.style.cursor = 'not-allowed';
+
+        // Get counter or start at 1
+        let counter = localStorage.getItem('itHireReqCounter');
+        counter = counter ? parseInt(counter) : 1;
+
+        // Pad to 3 digits (e.g., REQ001)
+        idInput.value = `REQ${String(counter).padStart(3, '0')}`;
+
+        // Increment counter on successful form submit
+        document.querySelector('form').addEventListener('submit', () => {
+            localStorage.setItem('itHireReqCounter', counter + 1);
+        });
+    }
+});
+// --- END OF AUTOMATIC UNIQUE ID GENERATOR ---
+
+
+      
 }
 </script>
