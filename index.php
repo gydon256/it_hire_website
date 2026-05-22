@@ -1,3 +1,4 @@
+<!--Section from JoackimMbeko-->
 <?php
 require_once 'db_connect.php';
 $pageTitle  = 'Home';
